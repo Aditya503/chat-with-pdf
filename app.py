@@ -6,8 +6,7 @@ from langchain.embeddings import OpenAIEmbeddings,HuggingFaceInstructEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-from langchain.chat_models import ChatOpenAI
-from langchain.llms import HuggingFaceHub
+from langchain import OpenAI
 from htmlTemplates import css,bot_template,user_template
 
 
@@ -35,7 +34,11 @@ def get_vector_embeddings(text_chunk):
     return vectorstore
 
 def get_conversation_chain(vector_store):
-    llm= ChatOpenAI()
+    llm= OpenAI(
+            temperature=0.6,
+            model_name="text-davinci-003"
+        )
+    
     memory=ConversationBufferMemory(memory_key='chat_history',return_messages=True)
     conversation_chain = ConversationalRetrievalChain.from_llm(
         llm=llm,
