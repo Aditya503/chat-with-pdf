@@ -1,2 +1,2 @@
 # chat-with-pdf
-Document Question Answering Application Using Langchain and Huggingface
+Document Question Answering Application Using Langchain and OpenAI 
